@@ -1,0 +1,150 @@
+1.
+mysql> create table collection( id int auto_increment primary key, name varchar(30));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into collection (name) values ("dior"),("cup"),("joinus"),("hr"),("scott"),("lq"),("lzq"),("wd"),("hcq"),("wss");
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from collection;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | dior   |
+|  2 | cup    |
+|  3 | joinus |
+|  4 | hr     |
+|  5 | scott  |
+|  6 | lq     |
+|  7 | lzq    |
+|  8 | wd     |
+|  9 | hcq    |
+| 10 | wss    |
++----+--------+
+10 rows in set (0.00 sec)
+
+mysql> delete from collection where name="hcq";
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from collection;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | dior   |
+|  2 | cup    |
+|  3 | joinus |
+|  4 | hr     |
+|  5 | scott  |
+|  6 | lq     |
+|  7 | lzq    |
+|  8 | wd     |
+| 10 | wss    |
++----+--------+
+9 rows in set (0.00 sec)
+
+2.<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gs</title>
+</head>
+<body>
+<b>min'nong</b>
+<p>At noon hoeing up the crops in the sweltering sun锄禾日当午，</p>
+<p>Sweat dripping onto the soil beneath the crops汗滴禾下土.</p>
+<p>Who knows that the meal in the dish谁知盘中餐，</p>
+<p>Each grain is filled with hard work粒粒皆辛苦.</p>
+ <b>A Tranquil Night 《静夜思》</b>
+<p>Before my bed a pool of light， 床前明月光，</p>
+<p>Is it hoarfrost(白霜) upon the ground? 疑是地上霜。</p>
+<p>Eyes raised, I see the moon so bright; 举头望明月，</p>
+<p>in homesickness I'm drowned. 低头思故乡。</p>
+</body>
+</html>
+
+3.
+mysql> create table film( id int auto_increment primary key, name varchar(30) not null, year varchar(4) not null, director varchar(40) not null, score float(5,2) not null);
+Query OK, 0 rows affected (1.73 sec)
+mysql> insert into film(name,year, director,score)
+    -> values ("bsnlch","2018","luoluo",5.80);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into film(name,year, director,score) values ("xhssf","2018","yanfei",6.60)
+    -> ,("duye","2018","RubenFleischer","9.30"),
+    -> ("mgdz2","2014","scott pau","7.90"),
+    -> ("cndqsjlg","2016","yibai zhang",5.20);
+Query OK, 4 rows affected (0.09 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from film;
++----+----------+------+----------------+-------+
+| id | name     | year | director       | score |
++----+----------+------+----------------+-------+
+|  1 | bsnlch   | 2018 | luoluo         |  5.80 |
+|  2 | xhssf    | 2018 | yanfei         |  6.60 |
+|  3 | duye     | 2018 | RubenFleischer |  9.30 |
+|  4 | mgdz2    | 2014 | scott pau      |  7.90 |
+|  5 | cndqsjlg | 2016 | yibai zhang    |  5.20 |
++----+----------+------+----------------+-------+
+5 rows in set (0.05 sec)
+
+mysql> select * from film where name like "bs%";
++----+--------+------+----------+-------+
+| id | name   | year | director | score |
++----+--------+------+----------+-------+
+|  1 | bsnlch | 2018 | luoluo   |  5.80 |
++----+--------+------+----------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from film where director like "l%";
++----+--------+------+----------+-------+
+| id | name   | year | director | score |
++----+--------+------+----------+-------+
+|  1 | bsnlch | 2018 | luoluo   |  5.80 |
++----+--------+------+----------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from film where year="2014";
++----+-------+------+-----------+-------+
+| id | name  | year | director  | score |
++----+-------+------+-----------+-------+
+|  4 | mgdz2 | 2014 | scott pau |  7.90 |
++----+-------+------+-----------+-------+
+1 row in set (0.05 sec)
+
+mysql> select * from film where film.score in(select max(score)from film);
++----+------+------+----------------+-------+
+| id | name | year | director       | score |
++----+------+------+----------------+-------+
+|  3 | duye | 2018 | RubenFleischer |  9.30 |
++----+------+------+----------------+-------+
+1 row in set (0.13 sec)
+
+4.
+mysql> select * from emp where emp.empno in (select max(empno) from emp group by deptno);
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |      | 10     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |      | 30     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |      | 20     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |      | 0      |
++-------+--------+-----------+------+------------+------+------+--------+
+4 rows in set (0.15 sec)
+
+5.mysql> insert into usernxb(name,password,dltime)
+    -> values("aaa","bbb","ccc"),("hhh","hehehe","ewccw"),("eewee","cdscsdc","ecvcc"),("scrvc","vcefv","eewfre"),("everve","reverv","rverv");
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from usernxb;
++----+--------+----------+--------+
+| id | name   | password | dltime |
++----+--------+----------+--------+
+|  1 | aaa    | bbb      | ccc    |
+|  2 | hhh    | hehehe   | ewccw  |
+|  3 | eewee  | cdscsdc  | ecvcc  |
+|  4 | scrvc  | vcefv    | eewfre |
+|  5 | everve | reverv   | rverv  |
++----+--------+----------+--------+
+5 rows in set (0.00 sec)
